@@ -17,7 +17,10 @@ features <- read.table("./features.txt")
 # Merge all data into a single data set
 
 all.X <- rbind(X_train, X_test)
-colnames(all.X) <- make.names(gsub("[()]", "", as.character(features[,2])), unique = TRUE)
+colnames(all.X) <- make.names(
+  gsub("BodyBody", "Body", # remove duplicates word from names
+       gsub("[()]", "",    # remove brackets from names
+            as.character(features[,2]))), unique = TRUE)
 
 all.Y <- rbind(y_train, y_test)
 colnames(all.Y) <- c("Training.ID")
@@ -29,8 +32,10 @@ all <- cbind(all.subject, all.Y, all.X)
 
 # Filter the dataset on means and stds
 
-mean_std_features <- c(grep(".mean.", colnames(all), fixed = T),
-                       grep(".std.", colnames(all), fixed = T))
+mean_std_features <- c(grep(".mean$", colnames(all)),            # keep when ending with mean
+                       grep(".mean.", colnames(all), fixed = T), # keep when .mean. in name
+                       grep(".std$", colnames(all)),             # keep when ending with std
+                       grep(".std.", colnames(all), fixed = T))  # keep when .std. in name
 filtered_dataset <- all[,c(1,2,mean_std_features)]
 
 # Includes appropriate labels
@@ -38,9 +43,11 @@ filtered_dataset <- all[,c(1,2,mean_std_features)]
 filtered_dataset <- merge(filtered_dataset, activity_labels, by="Training.ID")
 filtered_dataset <- subset(filtered_dataset, select = -Training.ID)
 
-# Tidy 
+# Melt and cast for aggregating the data
 
 tidy_dataset <- melt(filtered_dataset, c("Subject", "Training.Label"))
 tidy_dataset <- dcast(tidy_dataset, Subject + Training.Label ~ variable, mean)
+
+# Save the tidy dataset
 
 write.table(tidy_dataset, file = "tidy-dataset.txt", row.names = FALSE)
