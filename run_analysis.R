@@ -51,3 +51,7 @@ tidy_dataset <- dcast(tidy_dataset, Subject + Training.Label ~ variable, mean)
 # Save the tidy dataset
 
 write.table(tidy_dataset, file = "tidy-dataset.txt", row.names = FALSE)
+
+# Output the dataset
+
+tidy_dataset
