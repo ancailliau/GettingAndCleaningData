@@ -5,7 +5,7 @@
 | Name                 | Value                                                                 | Description                                                                                       |
 |----------------------|-----------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
 | Subject              | [1 : 30]                                                              | Subject identifier                                                                                |
-| Training.Label       | {LAYING,SITTING,STANDING,WALKING,WALKING_DOWNSTAIRS,WALKING_UPSTAIRS} | Activity performed by the subject                                                                 |
+| Training.Label       | {LAYING, SITTING, STANDING, WALKING, WALKING_DOWNSTAIRS, WALKING_UPSTAIRS} | Activity performed by the subject                                                                 |
 | tBodyAcc.mean.X      | [-1 : 1]                                                              | Mean for the time-domain body acceleration along X axis                                           |
 | tBodyAcc.mean.Y      | [-1 : 1]                                                              | Mean for the time-domain body acceleration along Y axis                                           |
 | tBodyAcc.mean.Z      | [-1 : 1]                                                              | Mean for the time-domain body acceleration along Z axis                                           |
