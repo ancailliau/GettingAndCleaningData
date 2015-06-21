@@ -1,5 +1,12 @@
 # CodeBook
 
+This file summarize the relevant information about the dataset generated
+by `run_analysis.R`.
+
+1. Description of the variables and their domain.
+2. Description of the choices made for the summary.
+3. Description of the study design.
+
 ## Variables
 
 | Name                 | Value                                                                      | Description                                                                                       |
@@ -58,6 +65,11 @@
 ## Summary choices
 
 The data were summarized for each subject and each activity. 
+
+Only means and standard deviation for the measurements were kept in the
+resulting dataset. `meanFreq` (or, _Weighted average of the frequency 
+components to obtain a mean frequency_) was not considered as a _mean_ 
+information.
 
 ## Study Design
 
